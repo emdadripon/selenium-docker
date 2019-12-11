@@ -5,7 +5,8 @@ pipeline {
         stage('Build Jar') {
             steps {
                 //sh
-                sh "mvn clean package -DskipTests"
+                def mvnHome = tool name: 'Apache Maven 3.6.0', type: 'maven'
+                sh "${mvnHome}/bin/mvn -B -DskipTests clean package"
             }
         }
         stage('Build Image') {
