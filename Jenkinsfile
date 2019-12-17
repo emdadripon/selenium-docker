@@ -11,7 +11,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 //sh
-                sh "docker build -t='emdadripon/selenium-docker' ."
+                sh "docker build -t='emdadripon/jenkins_test' ."
             }
         }
         stage('Push Image') {
@@ -19,7 +19,7 @@ pipeline {
 			    withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'pass', usernameVariable: 'user')]) {
                     //sh
 			        sh  "docker login --username=${user} --password=${pass}"
-			        sh "docker push emdadripon/selenium-docker:latest"
+			        sh "docker push emdadripon/jenkins_test:latest"
 			    }                           
             }
         }
